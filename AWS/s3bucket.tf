@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "billingcrederatesttf" {
-  bucket = "billingcrederatesttf"
+  bucket = "billingcrederatesttf" // bucket = var.bucket_name
   acl    = "private"
 
   tags = {
