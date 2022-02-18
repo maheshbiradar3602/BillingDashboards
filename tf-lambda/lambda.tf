@@ -8,10 +8,10 @@ data "archive_file" "AzureCopy" {
   output_path = "${local.lambda_zip_location}"
 }
 
-resource "aws_lambda_function" "test_lambda" {
+resource "aws_lambda_function" "azure_lambda" {
   filename      = "${local.lambda_zip_location}"
   function_name = "AzureCopy"
-  role          = "${aws_iam_role.test_role.arn}"
+  role          = "${aws_iam_role.azurelambda_role.arn}"
   handler       = "AzureCopy.lambda_handler"
 
   # source_code_hash = filebase64sha256("lambda_function_payload.zip")
