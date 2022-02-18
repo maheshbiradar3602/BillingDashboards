@@ -1,18 +1,18 @@
 locals{
-  lambda_zip_location = "outputs/welcome.zip"
+  lambda_zip_location = "outputs/AzureCopy.zip"
 
 }
-data "archive_file" "welcome" {
+data "archive_file" "AzureCopy" {
   type        = "zip"
-  source_file = "welcome.py"
+  source_file = "AzureCopy.py"
   output_path = "${local.lambda_zip_location}"
 }
 
 resource "aws_lambda_function" "test_lambda" {
   filename      = "${local.lambda_zip_location}"
-  function_name = "welcome"
+  function_name = "AzureCopy"
   role          = "${aws_iam_role.test_role.arn}"
-  handler       = "welcome.hello"
+  handler       = "AzureCopy.lambda_handler"
 
   # source_code_hash = filebase64sha256("lambda_function_payload.zip")
 
